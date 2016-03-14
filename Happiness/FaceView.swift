@@ -34,7 +34,7 @@ class FaceView: UIView {
     private enum Eye { case Left, Right }
     
     private func bezierPathForEye(whichEye: Eye) -> UIBezierPath {
-        let eyeRadius = faceRadius / Scaling.FaceRadiusToEyeOffsetRatio
+        let eyeRadius = faceRadius / Scaling.FaceRadiusToEyeRadiusRatio
         let eyeVerticalOffset = faceRadius / Scaling.FaceRadiusToEyeOffsetRatio
         let eyeHorizontalSeparation = faceRadius / Scaling.FaceRadiusToEyeSeparationRatio
         
@@ -60,11 +60,12 @@ class FaceView: UIView {
         let start = CGPoint(x: faceCenter.x - mouthWidth / 2, y: faceCenter.y + mouthVericalOffset)
         let end = CGPoint(x: start.x + mouthWidth, y: start.y)
         let cp1 = CGPoint(x: start.x + mouthWidth / 3, y: start.y + smileHeight)
-        let cp2 = CGPoint(x: end.x + mouthWidth / 3, y: cp1.y)
+        let cp2 = CGPoint(x: end.x - mouthWidth / 3, y: cp1.y)
         
         let path = UIBezierPath()
         path.moveToPoint(start)
         path.addCurveToPoint(end, controlPoint1: cp1, controlPoint2: cp2)
+        path.lineWidth = lineWidth
         return path
     }
 
