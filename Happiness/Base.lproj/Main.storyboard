@@ -30,6 +30,9 @@
                             <constraint firstItem="aFL-B7-EQ2" firstAttribute="leading" secondItem="LlQ-QY-PQH" secondAttribute="leading" id="whg-oa-hJo"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="faceview" destination="aFL-B7-EQ2" id="y1i-P5-bKe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nvf-aa-dfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
