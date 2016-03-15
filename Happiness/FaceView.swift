@@ -19,7 +19,7 @@ class FaceView: UIView
     @IBInspectable
     var color: UIColor = UIColor.blueColor() { didSet { setNeedsDisplay() } }
     @IBInspectable
-    var scale: CGFloat = 0.90
+    var scale: CGFloat = 1.00
     
     var faceCenter: CGPoint {
         return convertPoint(center, fromView: superview)
@@ -76,7 +76,15 @@ class FaceView: UIView
         path.lineWidth = lineWidth
         return path
     }
-
+    
+    func scale (gesture: UIPinchGestureRecognizer) {
+        if gesture.state == .Changed {
+            scale *= gesture.scale
+            gesture.scale = 1
+            self.setNeedsDisplay() // todo 이걸 호출 안하면 안되나? 
+        }
+    }
+    
     override func drawRect(rect: CGRect) {
         let facePath = UIBezierPath(arcCenter: faceCenter, radius: faceRadius, startAngle: 0, endAngle: CGFloat(2*M_PI), clockwise: true)
         facePath.lineWidth = lineWidth
